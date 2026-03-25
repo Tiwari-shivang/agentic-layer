@@ -1,0 +1,1 @@
+from .kb_service import upload_embeddings

@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from models import attrition_model, hiring_model, role_model, tenant_model, user_model
+from models import attrition_model, hiring_model, role_model, tenant_model, user_model, document_model
 from database import BaseClass, engine
 from controllers import agentic_router
 app = FastAPI()

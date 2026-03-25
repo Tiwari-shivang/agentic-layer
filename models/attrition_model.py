@@ -1,5 +1,6 @@
 import uuid
 from sqlalchemy import Column, Integer, String, Float, ForeignKey, DATE, TEXT, TIMESTAMP, text as sa_text
+from sqlalchemy.orm import relationship
 from database import BaseClass
 
 class attrition_model(BaseClass):
@@ -7,7 +8,7 @@ class attrition_model(BaseClass):
 
     id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
     tenant_id = Column(String(36), ForeignKey("tenants.id"))
-
+    Tenant=relationship("tenant_model")
     date = Column(DATE, nullable=False)
     department = Column(String(100), nullable=True)
     location = Column(TEXT, nullable=True)

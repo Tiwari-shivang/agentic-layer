@@ -6,3 +6,6 @@ uvicorn
 python-dotenv
 filestack-python
 openai
+requests
+pypdf
+qdrant-client
