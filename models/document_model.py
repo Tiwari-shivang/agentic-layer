@@ -11,6 +11,8 @@ class document_model(BaseClass):
     tenant_id=Column(String(36), ForeignKey('tenants.id'))
     Tenant=relationship("tenant_model")
 
+    file_type=Column(String(50), nullable=False)
+    file_name=Column(String(100), nullable=False)
     content=Column(TEXT, nullable=False)
     meta_data=Column(JSONB, nullable=False)
     created_at=Column(TIMESTAMP, server_default=sa_text('now()'))
