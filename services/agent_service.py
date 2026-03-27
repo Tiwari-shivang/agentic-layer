@@ -26,9 +26,9 @@ def build_system_prompt(query: str, context: str):
         FINAL ANSWER:
         """
 
-async def get_agent_response(message: str) -> chat_response:
+async def get_agent_response(message: str, tenant_id: str) -> chat_response:
         query_emb = get_embeddings(message)
-        searched_val = search_qdrant(query_emb, 101)
+        searched_val = search_qdrant(query_emb, tenant_id)
         best_chunks = filter_chunks(searched_val)
         if not best_chunks:
                 return chat_response(response="No relevant data found!")

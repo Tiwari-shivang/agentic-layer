@@ -7,3 +7,4 @@ class chat_response(BaseModel):
 
 class chat_request(BaseModel):
     message: str
+    tenant_id: str

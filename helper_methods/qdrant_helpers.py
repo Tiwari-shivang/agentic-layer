@@ -1,6 +1,7 @@
 from pypdf import PdfReader
 from config import client, q_client
 import uuid
+from schemas import kb_req_schema
 
 def get_embeddings(chunk: str):
     response = client.embeddings.create(
@@ -9,7 +10,7 @@ def get_embeddings(chunk: str):
     )
     return response.data[0].embedding
 
-def get_vector_points(chunks):
+def get_vector_points(request: kb_req_schema, chunks):
     points = []
     for chunk in chunks:
         embedding = get_embeddings(chunk)
@@ -17,7 +18,10 @@ def get_vector_points(chunks):
             "id": str(uuid.uuid4()),
             "vector": embedding,
             "payload": {
-                "tenant_id": 101,
+                "tenant_id": request.tenant_id,
+                "user_id": request.user_id,
+                "file_name": request.file_name,
+                "format": request.format,
                 "content": chunk,
                 "type": "document"
             }
